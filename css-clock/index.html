@@ -19,7 +19,6 @@
 
     </div>
     <audio id='audio' src="../drum-kit/sounds/tink.wav"></audio>
-
     <style>
         html {
             background: #018DED url(https://unsplash.it/1500/1000?image=881&blur=5);
@@ -95,16 +94,19 @@
         const hourHand = document.querySelector('.hour-hand')
         const audio = document.querySelector('#audio')
 
+
+
+
         function setDate() {
             const now = new Date()
             const seconds = now.getSeconds()
             const secondsDegrees = (seconds / 60) * 360 + 90;
             secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
             audio.volume = 0.08;
-            audio.play()
-            console.log(now)
+            // audio.play()
+
             const mins = now.getMinutes();
-            console.log(mins)
+
             const minsDegrees = ((mins / 60) * 360) + ((seconds / 60) * 6) + 90;
             minsHand.style.transform = `rotate(${minsDegrees}deg)`;
             const hour = now.getHours();
