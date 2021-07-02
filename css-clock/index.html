@@ -94,6 +94,39 @@
         const hourHand = document.querySelector('.hour-hand')
         const audio = document.querySelector('#audio')
 
+        let user = {
+            name: 'Mandeep',
+            address: {
+                permanent: {
+                    houseNumber: 301,
+                    city: 'sonipat'
+                },
+                office: {
+                    officeNumber: 100,
+                    city: 'panipat'
+                }
+            },
+            age: 21
+        };
+
+        let finalObject = {};
+
+        const recursiveModel = function (obj, parent) {
+
+            for (let key in obj) {
+                console.log(key, obj[key])
+                if (typeof obj[key] !== 'object') {
+                    finalObject[parent + '-' + key] = obj[key];
+
+                } else {
+                    recursiveModel(obj[key], parent + '-' + key)
+
+                }
+
+            }
+        }
+        recursiveModel(user, 'user')
+        console.log(finalObject)
 
 
 
