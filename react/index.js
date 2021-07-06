@@ -2,6 +2,53 @@
 
 const e = React.createElement;
 
+function Toggle() {
+  const [counter, setCounter] = React.useState(0);
+  const [autoCounter, setAutoCounter] = React.useState(0);
+
+  const incrementCallback = React.useCallback(() => {
+    console.log("hello");
+    setCounter(counter + 1);
+  }, [counter]);
+  // const incrementCallback = () => {
+  //   console.log("hello");
+  //   setCounter(counter + 1);
+  // };
+
+  // React.useEffect(() => {
+  //   setInterval(() => {
+  //     setAutoCounter((c) => c + 1);
+  //   }, 1000);
+  // }, []);
+
+  return (
+    <div>
+      <h1>Auto counter: {autoCounter}</h1>
+      <h2>Manual counter: {counter}</h2>
+      <button onClick={incrementCallback}>Increment</button>
+    </div>
+  );
+}
+// const Greeting = (props) => {
+//   console.log("Greeting Comp render");
+//   return <h1>Hi {props.name}!</h1>;
+// };
+
+// function Toggle() {
+//   const [counter, setCounter] = React.useState(0);
+
+//   // Update state variable `counter`
+//   // every 2 seconds.
+//   React.useEffect(() => {
+//     setInterval(() => {
+//       setCounter(counter + 1);
+//     }, 1000);
+//   }, []);
+
+//   console.log("App render");
+//   return <Greeting name="Ruben" />;
+// }
+
 // function Toggle() {
 //   const [count, setCount] = React.useState(0);
 
@@ -91,63 +138,63 @@ const e = React.createElement;
 //   }
 // }
 
-function Toggle() {
-  const [num, setNum] = React.useState(0);
-  const prevCountRef = React.useRef();
-  const [value, setValue] = React.useState(
-    "please select your favourite flavour"
-  );
+// function Toggle() {
+//   const [num, setNum] = React.useState(0);
+//   const prevCountRef = React.useRef();
+//   const [value, setValue] = React.useState(
+//     "please select your favourite flavour"
+//   );
 
-  React.useEffect(() => {
-    prevCountRef.current = num;
-  });
-  const prevCount = prevCountRef.current;
-  // console.log(num);
-  function handleClick() {
-    setNum(num + 1);
-  }
-  // componentDidMount  in useEffect
-  React.useEffect(() => {
-    console.log("hello");
-  }, []);
+//   React.useEffect(() => {
+//     prevCountRef.current = num;
+//   });
+//   const prevCount = prevCountRef.current;
+//   // console.log(num);
+//   function handleClick() {
+//     setNum(num + 1);
+//   }
+//   // componentDidMount  in useEffect
+//   React.useEffect(() => {
+//     console.log("hello");
+//   }, []);
 
-  // componentDidUpdate
-  React.useEffect(() => {
-    console.log("updated");
-  }, [num]);
+//   // componentDidUpdate
+//   React.useEffect(() => {
+//     console.log("updated");
+//   }, [num]);
 
-  // componentWillUnmount
-  React.useEffect(() => {
-    return () => {
-      console.log("bye");
-    };
-  }, []);
-  const handleSubmit = (e) => {
-    alert("your favourite flavor is: " + value);
-    e.preventDefault();
-  };
+//   // componentWillUnmount
+//   React.useEffect(() => {
+//     return () => {
+//       console.log("bye");
+//     };
+//   }, []);
+//   const handleSubmit = (e) => {
+//     alert("your favourite flavor is: " + value);
+//     e.preventDefault();
+//   };
 
-  return (
-    <div>
-      <h1>hii</h1>
-      <button onClick={handleClick}>count</button>
-      <h3>
-        {num} {prevCount}
-      </h3>
-      <form onSubmit={handleSubmit}>
-        <select value={value} onChange={(e) => setValue(e.target.value)}>
-          <option value="grapefruit">Grapefruit</option>
-          <option value="lime">Lime</option>
-          <option value="coconut">Coconut</option>
-          <option value="mango">Mango</option>
-        </select>
-        <input type="submit" value="submit" />
-      </form>
-    </div>
+//   return (
+//     <div>
+//       <h1>hii</h1>
+//       <button onClick={handleClick}>count</button>
+//       <h3>
+//         {num} {prevCount}
+//       </h3>
+//       <form onSubmit={handleSubmit}>
+//         <select value={value} onChange={(e) => setValue(e.target.value)}>
+//           <option value="grapefruit">Grapefruit</option>
+//           <option value="lime">Lime</option>
+//           <option value="coconut">Coconut</option>
+//           <option value="mango">Mango</option>
+//         </select>
+//         <input type="submit" value="submit" />
+//       </form>
+//     </div>
 
-    // e("h3", {}, "hello world")
-  );
-}
+//     // e("h3", {}, "hello world")
+//   );
+// }
 
 const domContainer = document.querySelector("#root");
 ReactDOM.render(<Toggle />, domContainer);
