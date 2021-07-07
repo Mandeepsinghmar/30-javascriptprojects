@@ -3,29 +3,70 @@
 const e = React.createElement;
 
 function Toggle() {
-  const [counter, setCounter] = React.useState(0);
+  const [people, setPeople] = React.useState("mandeep");
   const [autoCounter, setAutoCounter] = React.useState(0);
+  const [number, setNumber] = React.useState(0);
+  const [num, setNum] = React.useState(0);
 
   const incrementCallback = React.useCallback(() => {
     console.log("hello");
     setCounter(counter + 1);
   }, [counter]);
-  // const incrementCallback = () => {
-  //   console.log("hello");
-  //   setCounter(counter + 1);
-  // };
+  const incrementCallback = () => {
+    console.log("hello");
+    setCounter(counter + 1);
+  };
 
-  // React.useEffect(() => {
-  //   setInterval(() => {
-  //     setAutoCounter((c) => c + 1);
-  //   }, 1000);
-  // }, []);
+  React.useEffect(() => {
+    setInterval(() => {
+      setAutoCounter((c) => c + 1);
+    }, 1000);
+  }, []);
+  React.useEffect(() => {
+    for (let i = 0; i <= 10; i++) {
+      setTimeout(() => {
+        console.log(i);
+      });
+      setNum(i);
+    }
+  }, []);
+  React.useEffect(() => {
+    console.log("render start");
+  }, []);
 
+  function incrementCallback() {
+    setPeople("sandeep");
+  }
+
+  React.useLayoutEffect(() => {
+    for (let i = 10; i <= 20; i++) {
+      setNumber(i);
+      console.log(i);
+    }
+    function asyncFunction() {
+      const data = fetch("https://picsum.photos/200/300");
+      console.log(data);
+      setData(data.url);
+    }
+    asyncFunction();
+  }, []);
+
+  console.log("render end");
   return (
     <div>
-      <h1>Auto counter: {autoCounter}</h1>
-      <h2>Manual counter: {counter}</h2>
+      {/* <h1>Auto counter: {autoCounter}</h1> */}
+      {/* <h2>
+        Manual counter: {counter}
+        {data}
+      </h2> */}
       <button onClick={incrementCallback}>Increment</button>
+      <div>
+        <h1>{people}</h1>
+        <h1>start</h1>
+        <h1>{number}</h1>
+        <h1>{num}</h1>
+        <h1>end</h1>
+      </div>
     </div>
   );
 }
